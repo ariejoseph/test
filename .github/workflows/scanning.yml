@@ -29,11 +29,11 @@ jobs:
       - name: Run GoSec Security Scan
         uses: securego/gosec@master
         with:
-          args: "-exclude-generated -fmt=sarif -out=gosec_report.sarif -stdout -verbose=text ./..."
-        continue-on-error: true
+          args: "-exclude-generated ./..."
+#        continue-on-error: true
 
-      - name: Upload SARIF file
-        if: always()
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: gosec_report.sarif
+#      - name: Upload SARIF file
+#        if: always()
+#        uses: github/codeql-action/upload-sarif@v3
+#        with:
+#          sarif_file: gosec_report.sarif
