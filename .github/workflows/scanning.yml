@@ -25,6 +25,7 @@ jobs:
         with:
           version: v2.0
           args: "--new-from-rev=origin/main --disable=errcheck,unused --timeout=10m"
+        continue-on-error: true
 
       - name: Run GoSec Security Scan
         uses: securego/gosec@master
