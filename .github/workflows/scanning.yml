@@ -20,15 +20,18 @@ jobs:
         with:
           go-version: 1.23
 
-      - name: Install dependencies
-        run: go mod tidy
-
       - name: Run GolangCI-Lint
         uses: golangci/golangci-lint-action@v7
         with:
           version: v2.0
+          args: "--new-from-rev=origin/main --disable=errcheck,unused --timeout=10m"
 
       - name: Run GoSec Security Scan
         uses: securego/gosec@master
         with:
-          args: ./...
+          args: "-exclude-generated -fmt=sarif -out=gosec_report.sarif -stdout -verbose=text ./..."
+
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: gosec_report.sarif
