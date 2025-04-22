@@ -1,9 +1,11 @@
 package main
 
 import (
+	"fmt"
 	"os"
 )
 
 func main() {
-	os.Create("b.txt") 
+	fmt.Println("test")
+	os.Create("b.txt")
 }
