@@ -1,9 +1,16 @@
 package main
 
 import (
+	"fmt"
 	"os"
 )
 
 func main() {
-	os.Create("b.txt") 
+	fmt.Println("test")
+	f, err := os.Create("b.txt")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println("success", f.Name())
 }
